@@ -5,16 +5,13 @@ class Animal {
 
   constructor(name) {
     this.name = name;
-    this.healthy = 100;
+    this.health = 100;
 
     Animal.alive.push(this);
   }
 
   die() {
-    const idx = Animal.alive.indexOf(this);
-    if (idx !== -1) {
-      Animal.alive.splice(idx, 1);
-    }
+    Animal.alive = Animal.alive.filter(animal => animal !== this);
   }
 }
 
@@ -42,9 +39,9 @@ class Carnivore extends Animal {
       return;
    }
 
-   target.healthy -= 50;
+   target.health -= 50;
 
-   if (target.healthy <= 0) {
+   if (target.health <= 0) {
      target.die();
       }
     }
